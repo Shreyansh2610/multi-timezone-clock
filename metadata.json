@@ -1,0 +1,11 @@
+{
+  "uuid": "multi-timezone-clock@shreyansh",
+  "name": "Multi Timezone Clock",
+  "description": "Display multiple world clocks in the GNOME Shell top panel.",
+  "version": 1,
+  "shell-version": [
+    "50"
+  ],
+  "url": "https://github.com/shreyansh/multi-timezone-clock",
+  "settings-schema": "org.gnome.shell.extensions.multiclock"
+}

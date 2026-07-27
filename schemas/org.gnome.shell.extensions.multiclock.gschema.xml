@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.multiclock" path="/org/gnome/shell/extensions/multiclock/">
+    <key name="timezones" type="as">
+      <default>['Asia/Kolkata', 'America/Chicago', 'Europe/London']</default>
+      <summary>Configured timezones</summary>
+      <description>List of IANA timezone identifiers displayed by the extension.</description>
+    </key>
+
+    <key name="panel-position" type="s">
+      <default>'center'</default>
+      <summary>Panel position</summary>
+      <description>Where the indicator is placed: left, center, or right.</description>
+    </key>
+
+    <key name="time-format" type="s">
+      <default>'12'</default>
+      <summary>Time format</summary>
+      <description>Clock format: 12 or 24.</description>
+    </key>
+
+    <key name="show-date" type="b">
+      <default>true</default>
+      <summary>Show date</summary>
+      <description>Show the day and month in the panel label.</description>
+    </key>
+
+    <key name="show-weekday" type="b">
+      <default>true</default>
+      <summary>Show weekday</summary>
+      <description>Show the abbreviated weekday in the panel label.</description>
+    </key>
+
+    <key name="show-seconds" type="b">
+      <default>false</default>
+      <summary>Show seconds</summary>
+      <description>Show seconds in the panel label.</description>
+    </key>
+
+    <key name="show-flags" type="b">
+      <default>true</default>
+      <summary>Show flags</summary>
+      <description>Show country flags when available.</description>
+    </key>
+
+    <key name="show-timezone-name" type="b">
+      <default>false</default>
+      <summary>Show timezone name</summary>
+      <description>Show the configured display name in the panel label.</description>
+    </key>
+
+    <key name="popup-date" type="b">
+      <default>true</default>
+      <summary>Show popup date</summary>
+      <description>Show the full date in the popup.</description>
+    </key>
+
+    <key name="popup-seconds" type="b">
+      <default>false</default>
+      <summary>Show popup seconds</summary>
+      <description>Show seconds in the popup time.</description>
+    </key>
+
+    <key name="refresh-interval" type="i">
+      <default>1</default>
+      <summary>Refresh interval</summary>
+      <description>Refresh interval in seconds.</description>
+    </key>
+
+    <key name="compact-mode" type="b">
+      <default>false</default>
+      <summary>Compact mode</summary>
+      <description>Use compact spacing between panel clocks.</description>
+    </key>
+  </schema>
+</schemalist>
