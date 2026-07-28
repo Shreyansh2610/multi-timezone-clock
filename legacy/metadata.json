@@ -4,12 +4,13 @@
   "description": "Display multiple world clocks in the GNOME Shell top panel.",
   "version": 1,
   "shell-version": [
-    "45",
-    "46",
-    "47",
-    "48",
-    "49",
-    "50"
+    "3.36",
+    "3.38",
+    "40",
+    "41",
+    "42",
+    "43",
+    "44"
   ],
   "url": "https://github.com/Shreyansh2610/multi-timezone-clock",
   "settings-schema": "org.gnome.shell.extensions.multiclock"

@@ -1,20 +1,22 @@
 # Multi Timezone Clock
 
-Multi Timezone Clock is a GNOME Shell 50 extension that displays multiple world clocks in the top panel and provides a popup with detailed date, weekday, time, and UTC offset information.
+Multi Timezone Clock is a GNOME Shell 3.36 to 50+ extension that displays multiple world clocks in the top panel and provides a popup with detailed date, weekday, time, and UTC offset information.
 
-## Installation
+## Compatibility & Installation
 
-Install the extension directory at:
+This extension supports both legacy and modern GNOME Shell versions (supporting Ubuntu 20.04 to 26.04+).
 
-```sh
-~/.local/share/gnome-shell/extensions/multi-timezone-clock@shreyansh
-```
+1. Clone or copy the extension directory to:
+   ```sh
+   ~/.local/share/gnome-shell/extensions/multi-timezone-clock@shreyansh
+   ```
 
-The folder name must match the UUID:
-
-```text
-multi-timezone-clock@shreyansh
-```
+2. Run the installer script inside the folder to automatically detect your GNOME Shell version, configure files, and compile schemas:
+   ```sh
+   cd ~/.local/share/gnome-shell/extensions/multi-timezone-clock@shreyansh
+   make install
+   # Or directly: ./install.sh
+   ```
 
 ## Folder Structure
 
@@ -92,7 +94,7 @@ Make sure `schemas/gschemas.compiled` exists before packaging.
 
 ## Contributing
 
-Keep code compatible with GNOME Shell 50, GJS ES modules, GTK4, and LibAdwaita. Avoid deprecated APIs and keep runtime updates limited to label text changes.
+Keep code compatible with GNOME Shell 3.36 to 50+ by maintaining files in both the `legacy/` (for GNOME Shell < 45) and `esm/` (for GNOME Shell 45+) directories. Avoid deprecated APIs and keep runtime updates limited to label text changes.
 
 ## License
 

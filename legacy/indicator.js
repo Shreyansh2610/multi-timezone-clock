@@ -3,16 +3,14 @@
  * SPDX-License-Identifier: GPL-2.0-or-later
  */
 
-import Clutter from 'gi://Clutter';
-import GLib from 'gi://GLib';
-import GObject from 'gi://GObject';
-import St from 'gi://St';
+const {Clutter, GLib, GObject, St} = imports.gi;
+const Main = imports.ui.main;
+const PanelMenu = imports.ui.panelMenu;
 
-import * as Main from 'resource:///org/gnome/shell/ui/main.js';
-import * as PanelMenu from 'resource:///org/gnome/shell/ui/panelMenu.js';
-
-import {WorldClockPopup} from './popup.js';
-import * as Utils from './utils.js';
+const ExtensionUtils = imports.misc.extensionUtils;
+const Me = ExtensionUtils.getCurrentExtension();
+const Popup = Me.imports.popup;
+const Utils = Me.imports.utils;
 
 const EXTENSION_ID = 'multi-timezone-clock';
 const DEFAULT_TIMEZONE = 'Asia/Kolkata';
@@ -20,7 +18,7 @@ const DEFAULT_REFRESH_INTERVAL = 1;
 const VALID_PANEL_POSITIONS = ['left', 'center', 'right'];
 const VALID_REFRESH_INTERVALS = [1, 5, 30, 60];
 
-export const MultiClockIndicator = GObject.registerClass({
+var MultiClockIndicator = GObject.registerClass({
     GTypeName: 'MultiClockIndicator',
 }, class MultiClockIndicator extends PanelMenu.Button {
     constructor(extension) {
@@ -32,7 +30,7 @@ export const MultiClockIndicator = GObject.registerClass({
         this._timerId = 0;
         this._settingsChangedId = 0;
         this._timezones = [];
-        this._popup = new WorldClockPopup(extension, this._settings, this.menu);
+        this._popup = new Popup.WorldClockPopup(extension, this._settings, this.menu);
 
         this._label = new St.Label({
             style_class: 'multi-clock-label clock-label',

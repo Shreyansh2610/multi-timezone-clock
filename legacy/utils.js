@@ -3,8 +3,7 @@
  * SPDX-License-Identifier: GPL-2.0-or-later
  */
 
-import GLib from 'gi://GLib';
-import GWeather from 'gi://GWeather';
+const {GLib, GWeather} = imports.gi;
 
 const DEFAULT_TIMEZONE = 'Asia/Kolkata';
 
@@ -32,7 +31,7 @@ const NAMES = {
     'Australia/Sydney': 'Sydney',
 };
 
-export function getBoolean(settings, key, fallback) {
+function getBoolean(settings, key, fallback) {
     try {
         return settings.get_boolean(key);
     } catch (error) {
@@ -40,7 +39,7 @@ export function getBoolean(settings, key, fallback) {
     }
 }
 
-export function getString(settings, key, fallback) {
+function getString(settings, key, fallback) {
     try {
         return settings.get_string(key);
     } catch (error) {
@@ -48,7 +47,7 @@ export function getString(settings, key, fallback) {
     }
 }
 
-export function formatWithFallback(dateTime, format, fallback) {
+function formatWithFallback(dateTime, format, fallback) {
     if (!dateTime)
         return fallback;
 
@@ -56,7 +55,7 @@ export function formatWithFallback(dateTime, format, fallback) {
     return value ?? fallback;
 }
 
-export function getDateTime(zone = DEFAULT_TIMEZONE) {
+function getDateTime(zone = DEFAULT_TIMEZONE) {
     try {
         const timezone = GLib.TimeZone.new_identifier(zone);
 
@@ -69,7 +68,7 @@ export function getDateTime(zone = DEFAULT_TIMEZONE) {
     }
 }
 
-export function getTime(zone, settings = null, popup = false) {
+function getTime(zone, settings = null, popup = false) {
     const dateTime = getDateTime(zone);
 
     if (!dateTime)
@@ -86,19 +85,19 @@ export function getTime(zone, settings = null, popup = false) {
     return formatWithFallback(dateTime, showSeconds ? '%I:%M:%S %p' : '%I:%M %p', '--:--');
 }
 
-export function getDate(zone, longFormat = false) {
+function getDate(zone, longFormat = false) {
     const dateTime = getDateTime(zone);
     return formatWithFallback(dateTime, longFormat ? '%d %B %Y' : '%a %d %b', '');
 }
 
-export function getWeekday(zone) {
+function getWeekday(zone) {
     const dateTime = getDateTime(zone);
     return formatWithFallback(dateTime, '%A', '');
 }
 
 let timezoneCache = null;
 
-export function getFlagEmoji(countryCode) {
+function getFlagEmoji(countryCode) {
     if (!countryCode)
         return '🌍';
     const codePoints = countryCode
@@ -112,7 +111,7 @@ export function getFlagEmoji(countryCode) {
     }
 }
 
-export function ensureTimezoneCache() {
+function ensureTimezoneCache() {
     if (timezoneCache)
         return;
 
@@ -149,7 +148,7 @@ export function ensureTimezoneCache() {
     }
 }
 
-export function getFlag(zone) {
+function getFlag(zone) {
     if (FLAGS[zone])
         return FLAGS[zone];
     ensureTimezoneCache();
@@ -159,7 +158,7 @@ export function getFlag(zone) {
     return '🌍';
 }
 
-export function getTimezoneName(zone) {
+function getTimezoneName(zone) {
     if (NAMES[zone])
         return NAMES[zone];
     ensureTimezoneCache();
@@ -169,7 +168,7 @@ export function getTimezoneName(zone) {
     return zone;
 }
 
-export function formatPanel(flag, zone, settings = null) {
+function formatPanel(flag, zone, settings = null) {
     const parts = [];
     const showFlags = settings ? getBoolean(settings, 'show-flags', true) : true;
     const showTimezoneName = settings
@@ -199,7 +198,7 @@ export function formatPanel(flag, zone, settings = null) {
     return parts.filter(part => part.length > 0).join(' ');
 }
 
-export function formatPopup(zone, settings = null) {
+function formatPopup(zone, settings = null) {
     const showFlags = settings ? getBoolean(settings, 'show-flags', true) : true;
     const popupDate = settings ? getBoolean(settings, 'popup-date', true) : true;
     const flag = getFlag(zone);
@@ -214,11 +213,11 @@ export function formatPopup(zone, settings = null) {
     };
 }
 
-export function getOffset(zone) {
+function getOffset(zone) {
     const dateTime = getDateTime(zone);
     return formatWithFallback(dateTime, '%:::z', '');
 }
 
-export function isValidTimezone(zone) {
+function isValidTimezone(zone) {
     return getDateTime(zone) !== null;
 }

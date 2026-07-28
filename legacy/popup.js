@@ -3,11 +3,14 @@
  * SPDX-License-Identifier: GPL-2.0-or-later
  */
 
-import St from 'gi://St';
-import * as PopupMenu from 'resource:///org/gnome/shell/ui/popupMenu.js';
-import * as Utils from './utils.js';
+const {St} = imports.gi;
+const PopupMenu = imports.ui.popupMenu;
 
-export class WorldClockPopup {
+const ExtensionUtils = imports.misc.extensionUtils;
+const Me = ExtensionUtils.getCurrentExtension();
+const Utils = Me.imports.utils;
+
+var WorldClockPopup = class WorldClockPopup {
     constructor(extension, settings, menu) {
         this._extension = extension;
         this._settings = settings;
