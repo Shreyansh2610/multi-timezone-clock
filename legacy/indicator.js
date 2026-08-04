@@ -131,12 +131,21 @@ var MultiClockIndicator = GObject.registerClass({
     _restartTimer() {
         this._stopTimer();
 
-        this._timerId = GLib.timeout_add_seconds(
+        const now = GLib.DateTime.new_now_local();
+        const msec = now.get_microsecond() / 1000;
+        const sec = now.get_second();
+        const interval = this._getRefreshInterval();
+        const intervalMs = interval * 1000;
+        const msIntoInterval = (sec % interval) * 1000 + msec;
+        const delayMs = intervalMs - msIntoInterval + 50;
+
+        this._timerId = GLib.timeout_add(
             GLib.PRIORITY_DEFAULT,
-            this._getRefreshInterval(),
+            delayMs,
             () => {
                 this._updateLabels();
-                return GLib.SOURCE_CONTINUE;
+                this._restartTimer();
+                return GLib.SOURCE_REMOVE;
             }
         );
     }
